@@ -2,6 +2,7 @@ package block
 
 import (
 	"time"
+	"proofofwork"
 )
 
 type Block struct {
