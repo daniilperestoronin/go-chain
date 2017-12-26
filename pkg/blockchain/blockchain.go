@@ -1,4 +1,8 @@
-package main
+package blockchain
+
+import (
+	"block"
+)
 
 type Blockchain struct {
 	blocks []*Block

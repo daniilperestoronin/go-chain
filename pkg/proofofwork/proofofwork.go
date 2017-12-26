@@ -1,6 +1,8 @@
-package main
+package proofofwork
 
 import (
+  "block"
+  "utils"
 	"bytes"
 	"crypto/sha256"
 	"fmt"
