@@ -1,8 +1,7 @@
-package block
+package main
 
 import (
 	"time"
-	"proofofwork"
 )
 
 type Block struct {
