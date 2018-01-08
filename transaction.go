@@ -37,29 +37,6 @@ func (tx Transaction) SetID() {
 	tx.ID = hash[:]
 }
 
-// TXInput represents a transaction input
-type TXInput struct {
-	Txid      []byte
-	Vout      int
-	ScriptSig string
-}
-
-// TXOutput represents a transaction output
-type TXOutput struct {
-	Value        int
-	ScriptPubKey string
-}
-
-// CanUnlockOutputWith checks whether the address initiated the transaction
-func (in *TXInput) CanUnlockOutputWith(unlockingData string) bool {
-	return in.ScriptSig == unlockingData
-}
-
-// CanBeUnlockedWith checks if the output can be unlocked with the provided data
-func (out *TXOutput) CanBeUnlockedWith(unlockingData string) bool {
-	return out.ScriptPubKey == unlockingData
-}
-
 // NewCoinbaseTX creates a new coinbase transaction
 func NewCoinbaseTX(to, data string) *Transaction {
 	if data == "" {
