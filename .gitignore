@@ -12,3 +12,4 @@
 
 #BoltDB
 *.db
+*.dat
