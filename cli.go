@@ -27,15 +27,6 @@ func (cli *CLI) validateArgs() {
 	}
 }
 
-func (cli *CLI) send(from, to string, amount int) {
-	bc := NewBlockchain(from)
-	defer bc.db.Close()
-
-	tx := NewUTXOTransaction(from, to, amount, bc)
-	bc.MineBlock([]*Transaction{tx})
-	fmt.Println("Success!")
-}
-
 // Run parses command line arguments and processes commands
 func (cli *CLI) Run() {
 	cli.validateArgs()
