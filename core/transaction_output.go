@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"encoding/gob"
 	"log"
+
+	"github.com/daniilperestoronin/go-chain/crypto"
 )
 
 // TXOutput represents a transaction output
@@ -14,7 +16,7 @@ type TXOutput struct {
 
 // Lock signs the output
 func (out *TXOutput) Lock(address []byte) {
-	pubKeyHash := Base58Decode(address)
+	pubKeyHash := crypto.Base58Decode(address)
 	pubKeyHash = pubKeyHash[1 : len(pubKeyHash)-4]
 	out.PubKeyHash = pubKeyHash
 }
