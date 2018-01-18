@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"math"
 	"math/big"
+
+	"github.com/daniilperestoronin/go-chain/utils"
 )
 
 var (
@@ -33,9 +35,9 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte {
 		[][]byte{
 			pow.block.PrevBlockHash,
 			pow.block.HashTransactions(),
-			IntToHex(pow.block.Timestamp),
-			IntToHex(int64(targetBits)),
-			IntToHex(int64(nonce)),
+			utils.IntToHex(pow.block.Timestamp),
+			utils.IntToHex(int64(targetBits)),
+			utils.IntToHex(int64(nonce)),
 		},
 		[]byte{},
 	)
