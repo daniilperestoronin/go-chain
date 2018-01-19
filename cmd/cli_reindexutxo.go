@@ -1,10 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/daniilperestoronin/go-chain/core"
+)
 
 func (cli *CLI) reindexUTXO(nodeID string) {
-	bc := NewBlockchain(nodeID)
-	UTXOSet := UTXOSet{bc}
+	bc := core.NewBlockchain(nodeID)
+	UTXOSet := core.UTXOSet{bc}
 	UTXOSet.Reindex()
 
 	count := UTXOSet.CountTransactions()

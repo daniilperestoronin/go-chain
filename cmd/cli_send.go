@@ -3,31 +3,33 @@ package main
 import (
 	"fmt"
 	"log"
+
+	"github.com/daniilperestoronin/go-chain/core"
 )
 
 func (cli *CLI) send(from, to string, amount int, nodeID string, mineNow bool) {
-	if !ValidateAddress(from) {
+	if !core.ValidateAddress(from) {
 		log.Panic("ERROR: Sender address is not valid")
 	}
-	if !ValidateAddress(to) {
+	if !core.ValidateAddress(to) {
 		log.Panic("ERROR: Recipient address is not valid")
 	}
 
-	bc := NewBlockchain(nodeID)
-	UTXOSet := UTXOSet{bc}
-	defer bc.db.Close()
+	bc := core.NewBlockchain(nodeID)
+	UTXOSet := core.UTXOSet{bc}
+	defer bc.CloseConnection()
 
-	wallets, err := NewWallets(nodeID)
+	wallets, err := core.NewWallets(nodeID)
 	if err != nil {
 		log.Panic(err)
 	}
 	wallet := wallets.GetWallet(from)
 
-	tx := NewUTXOTransaction(&wallet, to, amount, &UTXOSet)
+	tx := core.NewUTXOTransaction(&wallet, to, amount, &UTXOSet)
 
 	if mineNow {
-		cbTx := NewCoinbaseTX(from, "")
-		txs := []*Transaction{cbTx, tx}
+		cbTx := core.NewCoinbaseTX(from, "")
+		txs := []*core.Transaction{cbTx, tx}
 
 		newBlock := bc.MineBlock(txs)
 		UTXOSet.Update(newBlock)

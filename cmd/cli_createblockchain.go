@@ -3,16 +3,18 @@ package main
 import (
 	"fmt"
 	"log"
+
+	"github.com/daniilperestoronin/go-chain/core"
 )
 
 func (cli *CLI) createBlockchain(address, nodeID string) {
-	if !ValidateAddress(address) {
+	if !core.ValidateAddress(address) {
 		log.Panic("ERROR: Address is not valid")
 	}
-	bc := CreateBlockchain(address, nodeID)
-	defer bc.db.Close()
+	bc := core.CreateBlockchain(address, nodeID)
+	defer bc.CloseConnection()
 
-	UTXOSet := UTXOSet{bc}
+	UTXOSet := core.UTXOSet{bc}
 	UTXOSet.Reindex()
 
 	fmt.Println("Done!")
