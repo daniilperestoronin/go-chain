@@ -153,6 +153,10 @@ func (bc *Blockchain) FindTransaction(ID []byte) (Transaction, error) {
 	return Transaction{}, errors.New("Transaction is not found")
 }
 
+func (bc *Blockchain) CloseConnection() {
+	bc.db.Close()
+}
+
 // FindUTXO finds all unspent transaction outputs and returns transactions with spent outputs removed
 func (bc *Blockchain) FindUTXO() map[string]TXOutputs {
 	UTXO := make(map[string]TXOutputs)
