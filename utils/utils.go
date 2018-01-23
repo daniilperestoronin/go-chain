@@ -17,8 +17,9 @@ func IntToHex(num int64) []byte {
 }
 
 // ReverseBytes reverses a byte array
-func ReverseBytes(data []byte) {
+func ReverseBytes(data []byte) []byte {
 	for i, j := 0, len(data)-1; i < j; i, j = i+1, j-1 {
 		data[i], data[j] = data[j], data[i]
 	}
+	return data
 }
