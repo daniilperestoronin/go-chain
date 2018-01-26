@@ -24,16 +24,16 @@ func Base58Encode(input []byte) []byte {
 		result = append(result, b58Alphabet[mod.Int64()])
 	}
 
-	result := utils.ReverseBytes(result)
+	revresult := utils.ReverseBytes(result)
 	for b := range input {
 		if b == 0x00 {
-			result = append([]byte{b58Alphabet[0]}, result...)
+			revresult = append([]byte{b58Alphabet[0]}, revresult...)
 		} else {
 			break
 		}
 	}
 
-	return result
+	return revresult
 }
 
 // Base58Decode decodes Base58-encoded data
