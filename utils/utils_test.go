@@ -2,14 +2,25 @@ package utils
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 )
 
 func TestIntToHex(t *testing.T) {
-	a := IntToHex(123243221)
-	b := []byte{0, 0, 0, 0, 7, 88, 138, 213}
-	if !bytes.Equal(a, b) {
-		t.Error("Expected [0 0 0 0 7 88 138 213], got", a)
+	var td = map[int64][]byte{
+		123243221: []byte{0, 0, 0, 0, 7, 88, 138, 213},
+		12324322:  []byte{0, 0, 0, 0, 0, 188, 13, 226},
+	}
+	for dat, res := range td {
+		dat := dat
+		res := res
+		t.Run(fmt.Sprintf("%s%d", "Test for data: ", dat), func(t *testing.T) {
+			t.Parallel()
+			tres := IntToHex(dat)
+			if !bytes.Equal(tres, res) {
+				t.Error("Expected ", res, ", got ", tres)
+			}
+		})
 	}
 }
 
