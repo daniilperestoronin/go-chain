@@ -25,9 +25,25 @@ func TestIntToHex(t *testing.T) {
 }
 
 func TestReverseBytes(t *testing.T) {
-	b := []byte{1, 2, 3}
-	a := []byte{3, 2, 1}
-	if !bytes.Equal(a, ReverseBytes(b)) {
-		t.Error("Expected [3 2 1], got", a)
+	type PairByte struct {
+		dat, res []byte
+	}
+
+	var td = map[string]PairByte{
+		"Test1": PairByte{[]byte{1, 2, 3}, []byte{3, 2, 1}},
+		"Test2": PairByte{[]byte{1, 2, 3, 4}, []byte{4, 3, 2, 1}},
+		"Test3": PairByte{[]byte{1, 2, 3, 4, 5}, []byte{5, 4, 3, 2, 1}},
+	}
+
+	for n, dat := range td {
+		n := n
+		dat := dat
+		t.Run(n, func(t *testing.T) {
+			t.Parallel()
+			tres := ReverseBytes(dat.dat)
+			if !bytes.Equal(tres, dat.res) {
+				t.Error("Expected ", dat.res, ", got ", tres)
+			}
+		})
 	}
 }
