@@ -16,7 +16,7 @@ type TXOutput struct {
 
 // Lock signs the output
 func (out *TXOutput) Lock(address []byte) {
-	pubKeyHash := crypto.Base58Decode(address)
+	pubKeyHash, _ := crypto.BitcoinBase58.Encode(address)
 	pubKeyHash = pubKeyHash[1 : len(pubKeyHash)-4]
 	out.PubKeyHash = pubKeyHash
 }
