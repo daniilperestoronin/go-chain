@@ -40,7 +40,7 @@ func TestReverseBytes(t *testing.T) {
 		dat := dat
 		t.Run(n, func(t *testing.T) {
 			t.Parallel()
-			tres := ReverseBytes(dat.dat)
+			tres := Reverse(dat.dat)
 			if !bytes.Equal(tres, dat.res) {
 				t.Error("Expected ", dat.res, ", got ", tres)
 			}
