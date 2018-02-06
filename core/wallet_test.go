@@ -8,8 +8,8 @@ import (
 
 func TestWallet(t *testing.T){
   private, public := newKeyPair()
-  wallet := Wallet{private, public}
-  twallet := NewWallet()
+  wallet := &Wallet{private, public}
+  twallet := NewWallet(private, public)
   assert.Equal(
     t,
     wallet,

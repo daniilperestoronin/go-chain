@@ -24,11 +24,11 @@ type Wallet struct {
 }
 
 // NewWallet creates and returns a Wallet
-func NewWallet() *Wallet {
-	private, public := newKeyPair()
-	wallet := Wallet{private, public}
-
-	return &wallet
+func NewWallet(private ecdsa.PrivateKey, public []byte) *Wallet {
+	return &Wallet{
+		PrivateKey :private,
+		PublicKey:public,
+	}
 }
 
 // GetAddress returns wallet address
