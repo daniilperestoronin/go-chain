@@ -12,8 +12,10 @@ import (
 	"golang.org/x/crypto/ripemd160"
 )
 
-const version = byte(0x00)
-const addressChecksumLen = 4
+const (
+	version = byte(0x00)
+	addressChecksumLen = 4
+)
 
 // Wallet stores private and public keys
 type Wallet struct {
@@ -59,9 +61,9 @@ func HashPubKey(pubKey []byte) []byte {
 // ValidateAddress check if address if valid
 func ValidateAddress(address string) bool {
 	pubKeyHash, _ := crypto.BitcoinBase58.Encode([]byte(address))
-	actualChecksum := pubKeyHash[len(pubKeyHash)-addressChecksumLen:]
+	actualChecksum := pubKeyHash[len(pubKeyHash) - addressChecksumLen:]
 	version := pubKeyHash[0]
-	pubKeyHash = pubKeyHash[1 : len(pubKeyHash)-addressChecksumLen]
+	pubKeyHash = pubKeyHash[1 : len(pubKeyHash) - addressChecksumLen]
 	targetChecksum := checksum(append([]byte{version}, pubKeyHash...))
 
 	return bytes.Compare(actualChecksum, targetChecksum) == 0
