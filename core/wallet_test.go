@@ -9,7 +9,7 @@ import (
 	"bytes"
 )
 
-func TestWallet(t *testing.T) {
+func TestNewWallet(t *testing.T) {
 	private, public := newKeyPair()
 	wallet := &Wallet{private, public}
 	twallet := NewWallet(private, public)
@@ -19,6 +19,10 @@ func TestWallet(t *testing.T) {
 		twallet,
 		"Level 1 hash 1 is correct",
 	)
+}
+
+func TestWallet_GetAddress(t *testing.T) {
+
 }
 
 func TestHashPubKey(t *testing.T) {
@@ -35,4 +39,8 @@ func TestHashPubKey(t *testing.T) {
 	if !bytes.Equal(expectedRes, testRes) {
 		t.Error("Expected", expectedRes, " got ", testRes)
 	}
+}
+
+func TestValidateAddress(t *testing.T) {
+
 }
