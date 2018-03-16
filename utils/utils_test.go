@@ -8,8 +8,8 @@ import (
 
 func TestIntToHex(t *testing.T) {
 	var td = map[int64][]byte{
-		123243221: []byte{0, 0, 0, 0, 7, 88, 138, 213},
-		12324322:  []byte{0, 0, 0, 0, 0, 188, 13, 226},
+		123243221: {0, 0, 0, 0, 7, 88, 138, 213},
+		12324322:  {0, 0, 0, 0, 0, 188, 13, 226},
 	}
 	for dat, res := range td {
 		dat := dat
@@ -30,9 +30,9 @@ func TestReverseBytes(t *testing.T) {
 	}
 
 	var td = map[string]PairByte{
-		"Test1": PairByte{[]byte{1, 2, 3}, []byte{3, 2, 1}},
-		"Test2": PairByte{[]byte{1, 2, 3, 4}, []byte{4, 3, 2, 1}},
-		"Test3": PairByte{[]byte{1, 2, 3, 4, 5}, []byte{5, 4, 3, 2, 1}},
+		"Test1": {[]byte{1, 2, 3}, []byte{3, 2, 1}},
+		"Test2": {[]byte{1, 2, 3, 4}, []byte{4, 3, 2, 1}},
+		"Test3": {[]byte{1, 2, 3, 4, 5}, []byte{5, 4, 3, 2, 1}},
 	}
 
 	for n, dat := range td {
