@@ -1,3 +1,4 @@
+// Package crypto represents algorithms for encrypting and decrypting data
 package crypto
 
 import (
@@ -5,7 +6,8 @@ import (
 	"testing"
 )
 
-func TestBase58Encode(t *testing.T) {
+// TestBase58_Encode test for structure Encode function
+func TestBase58_Encode(t *testing.T) {
 	var td = map[string][]byte{
 		"":                              []byte(""),
 		"0":                             []byte("1"),
@@ -37,7 +39,8 @@ func TestBase58Encode(t *testing.T) {
 	}
 }
 
-func TestBase58Decode(t *testing.T) {
+//TestBase58_Decode test for Base58 structure Decode function
+func TestBase58_Decode(t *testing.T) {
 	ts := [][]byte{
 		[]byte(""),
 		[]byte("0"),

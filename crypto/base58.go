@@ -1,3 +1,4 @@
+// Package crypto represents algorithms for encrypting and decrypting data
 package crypto
 
 import (
@@ -7,11 +8,13 @@ import (
 	"github.com/daniilperestoronin/go-chain/utils"
 )
 
+// Base58 structeure represent base 58 cryptographic algorithm
 type Base58 struct {
 	alphabet  [58]byte
 	decodeMap [256]int64
 }
 
+// base58 create Base58 struct with received alphabet
 func base58(alphabet []byte) *Base58 {
 	bs := &Base58{}
 	copy(bs.alphabet[:], alphabet[:])
@@ -24,10 +27,13 @@ func base58(alphabet []byte) *Base58 {
 	return bs
 }
 
+// BitcoinBase58 initialize Base58 sructure for Bitcoin with received alphabet
 var BitcoinBase58 = base58([]byte("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"))
 
+// radix for base 58
 var radix = big.NewInt(58)
 
+// Encode encrypting src using base 58 algorithm
 func (base58 *Base58) Encode(src []byte) ([]byte, error) {
 	if len(src) == 0 {
 		return []byte{}, nil
@@ -61,6 +67,7 @@ func (base58 *Base58) Encode(src []byte) ([]byte, error) {
 	}
 }
 
+// Decode decrypting encrypted base 58 src 
 func (base58 *Base58) Decode(src []byte) ([]byte, error) {
 	if len(src) == 0 {
 		return []byte{}, nil
