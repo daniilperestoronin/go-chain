@@ -1,3 +1,4 @@
+// Package utils contains useful functions
 package utils
 
 import (
@@ -6,6 +7,7 @@ import (
 	"testing"
 )
 
+// TestIntToHex test for IntToHex
 func TestIntToHex(t *testing.T) {
 	var td = map[int64][]byte{
 		123243221: {0, 0, 0, 0, 7, 88, 138, 213},
@@ -24,6 +26,7 @@ func TestIntToHex(t *testing.T) {
 	}
 }
 
+// TestReverseBytes test for Reverse
 func TestReverseBytes(t *testing.T) {
 	type PairByte struct {
 		dat, res []byte
