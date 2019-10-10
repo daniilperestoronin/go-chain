@@ -67,7 +67,7 @@ func (base58 *Base58) Encode(src []byte) ([]byte, error) {
 	}
 }
 
-// Decode decrypting encrypted base 58 src 
+// Decode decrypting encrypted base 58 src
 func (base58 *Base58) Decode(src []byte) ([]byte, error) {
 	if len(src) == 0 {
 		return []byte{}, nil

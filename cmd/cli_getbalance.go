@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -17,7 +17,7 @@ func (cli *CLI) getBalance(address, nodeID string) {
 	defer bc.CloseConnection()
 
 	balance := 0
-	pubKeyHash := crypto.Base58Decode([]byte(address))
+	pubKeyHash, _ := crypto.BitcoinBase58.Decode([]byte(address))
 	pubKeyHash = pubKeyHash[1 : len(pubKeyHash)-4]
 	UTXOs := UTXOSet.FindUTXO(pubKeyHash)
 
