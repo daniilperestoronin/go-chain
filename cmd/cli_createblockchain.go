@@ -14,7 +14,7 @@ func (cli *CLI) createBlockchain(address, nodeID string) {
 	bc := core.CreateBlockchain(address, nodeID)
 	defer bc.CloseConnection()
 
-	UTXOSet := core.UTXOSet{bc}
+	UTXOSet := core.UTXOSet{Blockchain: bc}
 	UTXOSet.Reindex()
 
 	fmt.Println("Done!")

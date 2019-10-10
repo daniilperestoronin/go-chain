@@ -212,7 +212,7 @@ func handleBlock(request []byte, bc *core.Blockchain) {
 
 		blocksInTransit = blocksInTransit[1:]
 	} else {
-		UTXOSet := core.UTXOSet{bc}
+		UTXOSet := core.UTXOSet{Blockchain: bc}
 		UTXOSet.Reindex()
 	}
 }
@@ -340,7 +340,7 @@ func handleTx(request []byte, bc *core.Blockchain) {
 			txs = append(txs, cbTx)
 
 			newBlock := bc.MineBlock(txs)
-			UTXOSet := core.UTXOSet{bc}
+			UTXOSet := core.UTXOSet{Blockchain: bc}
 			UTXOSet.Reindex()
 
 			fmt.Println("New block is mined!")

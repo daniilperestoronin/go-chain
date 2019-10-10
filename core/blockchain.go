@@ -153,6 +153,7 @@ func (bc *Blockchain) FindTransaction(ID []byte) (Transaction, error) {
 	return Transaction{}, errors.New("Transaction is not found")
 }
 
+// CloseConnection close db connection
 func (bc *Blockchain) CloseConnection() {
 	bc.db.Close()
 }
@@ -237,7 +238,7 @@ func (bc *Blockchain) GetBlock(blockHash []byte) (Block, error) {
 		blockData := b.Get(blockHash)
 
 		if blockData == nil {
-			return errors.New("Block is not found.")
+			return errors.New("Block is not found")
 		}
 
 		block = *DeserializeBlock(blockData)

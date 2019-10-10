@@ -13,7 +13,7 @@ func (cli *CLI) getBalance(address, nodeID string) {
 		log.Panic("ERROR: Address is not valid")
 	}
 	bc := core.NewBlockchain(nodeID)
-	UTXOSet := core.UTXOSet{bc}
+	UTXOSet := core.UTXOSet{Blockchain: bc}
 	defer bc.CloseConnection()
 
 	balance := 0

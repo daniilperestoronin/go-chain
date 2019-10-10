@@ -16,7 +16,7 @@ func (cli *CLI) send(from, to string, amount int, nodeID string, mineNow bool) {
 	}
 
 	bc := core.NewBlockchain(nodeID)
-	UTXOSet := core.UTXOSet{bc}
+	UTXOSet := core.UTXOSet{Blockchain: bc}
 	defer bc.CloseConnection()
 
 	wallets, err := core.NewWallets(nodeID)

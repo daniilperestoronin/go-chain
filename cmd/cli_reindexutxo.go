@@ -8,7 +8,7 @@ import (
 
 func (cli *CLI) reindexUTXO(nodeID string) {
 	bc := core.NewBlockchain(nodeID)
-	UTXOSet := core.UTXOSet{bc}
+	UTXOSet := core.UTXOSet{Blockchain: bc}
 	UTXOSet.Reindex()
 
 	count := UTXOSet.CountTransactions()

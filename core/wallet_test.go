@@ -3,10 +3,10 @@ package core
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
-	"crypto/sha256"
-	"golang.org/x/crypto/ripemd160"
 	"bytes"
+	"crypto/sha256"
+	"github.com/stretchr/testify/assert"
+	"golang.org/x/crypto/ripemd160"
 )
 
 func TestNewWallet(t *testing.T) {
